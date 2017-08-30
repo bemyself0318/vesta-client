@@ -1,0 +1,1 @@
+ons.platform.select('android');

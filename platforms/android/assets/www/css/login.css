@@ -1,0 +1,89 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div {
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: 0;
+}
+
+.page__content h1,{
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+     cursor: pointer;
+}
+
+.page__content h1 {
+    font-family: 'Kalam';
+    font-weight: 700;
+    font-size: 40px;
+    color: black;
+}
+
+/* android */
+
+.button--material {
+    background: #A53A3B;
+    width: 50%;
+}
+
+.button--material:active {
+    background: #A53A3B;
+}
+
+.toolbar--material {
+    background: #14325C;
+}
+
+.text-input--material:focus {
+    background-image: -webkit-linear-gradient(#C1403D, #C1403D), -webkit-linear-gradient(bottom, transparent 1px, #C1403D 1px);
+    width: 100%;
+}
+
+.text-input--material {
+    width: 100%;
+    background-image: -webkit-linear-gradient(rgba(193, 64, 61, 0.43), rgba(193, 64, 61, 0)), -webkit-linear-gradient(bottom, transparent 1px, rgba(193, 64, 61, 0.43) 1px);
+}
+
+.page--material__background {
+    background: #fff3cf;
+}
+
+ons-input {
+    width: 60%;
+    margin: 5px 0;
+    font-size: 20px
+}
+
+.text-input--material__label--active {
+    color: #C1403D;
+}
+.regis{
+    font-size: 22px;
+    font-weight: bolder;
+}
+.noaccount{
+    margin-top: 30px;
+}
+.forgetpsd{
+    font-size: 10px;
+}
+.msg{
+    padding: 0;
+    margin: 0;
+    color: red;
+    font-weight: bolder;
+    display:none;
+}
+/* ios */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--base-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<link rel="stylesheet" type="text/css" href="../css/usrquery.css?20">
+    <title>usrquery</title>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <!--如果沒登入則回登入頁面↓，如果有登入則不顯示-->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-chevron-left"></ons-icon>
+                </ons-toolbar-button>
+                <!--回登入頁面 ↑-->
+            </div>
+            <div class="center" style="text-align: center">請選擇</div>
+            <div class="right"> </div>
+        </ons-toolbar>
+		
+        <div class="nowcontent">
+            <ons-button id="totalPeopleCtl" class="peoplebtn"><span id="totalPeople">總人數</span><i class="fa fa-user-plus people" aria-hidden="true"></i></ons-button>
+            <ons-button id="totalCourseCtl" class="coursebtn"><span id="totalCourse">總菜數</span><i class="fa fa-cutlery course" aria-hidden="true"></i></ons-button>
+            <ons-button id="totalCostCtl" class="moneybtn"><span id="totalCost">總預算</span><i class="fa fa-money money" aria-hidden="true"></i></ons-button>
+			<ons-button id="totalCheckCtl" class="check">確認送出</ons-button>
+            <p id="checkmsg" class="costmsg">訊息</p>
+        </div>
+        <div class="peopleSele">
+            <div class="frame">
+                <ons-button id="cutpeo" class="numbtn">
+                    <ons-icon icon="fa-minus"></ons-icon>
+                </ons-button>
+                <input id="people" class="cnt" type="text" name="" placeholder="" value="1" readonly><span class="unit">人</span>
+                <ons-button id="addpeo" class="numbtn">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-button>
+                <br>
+                <ons-button id="peopleCheck" class="checkbtn">確認</ons-button>
+            </div>
+        </div>
+        <div class="courseSele">
+            <div class="frame">
+                <ons-button id="cutcourse" class="numbtn">
+                    <ons-icon icon="fa-minus"></ons-icon>
+                </ons-button>
+                <input id="course" class="cnt" type="text" name="" placeholder="" value="1" readonly><span class="unit">道</span>
+                <ons-button id="addcourse" class="numbtn">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-button>
+                <br>
+				<ons-button id="courseCheck" class="checkbtn">確認</ons-button>
+            </div>
+        </div>
+        <div class="costSele">
+            <div class="frameCost">
+                <ons-button id="cutcostT" class="numbtn">
+                    <ons-icon icon="fa-minus"></ons-icon>
+                </ons-button>
+                <input id="costT" class="cntcost" type="text" name="" placeholder="" value="0" readonly>
+                <ons-button id="addcostT" class="numbtn">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-button>
+                <br>
+                <ons-button id="cutcostH" class="numbtn">
+                    <ons-icon icon="fa-minus"></ons-icon>
+                </ons-button>
+                <input id="costH" class="cntcost" type="text" name="" placeholder="" value="300" readonly>
+                <ons-button id="addcostH" class="numbtn">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-button>
+                <br>
+                <ons-button id="cutcostD" class="numbtn">
+                    <ons-icon icon="fa-minus"></ons-icon>
+                </ons-button>
+                <input id="costD" class="cntcost" type="text" name="" placeholder="" value="50" readonly>
+                <ons-button id="addcostD" class="numbtn">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-button>
+                <br>
+                <div style="text-align: left;padding-left: 40px;">當前預算：<span id="currentCost">350</span>元
+                </div>
+				<ons-button id="costCheck" class="checkbtn">確認</ons-button>
+                <p id="costmsg" class="costmsg">總預算不能為0</p>
+            </div>
+        </div>
+    </ons-page>
+</body>
+
+</html>
+<!--DOM control js-->
+<script type="text/javascript" src="../js/usrquery.js"></script>

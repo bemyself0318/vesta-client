@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<!--base-->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<script type="text/javascript" src="cordova.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/login.css?88">
+    <title>Login</title>
+    </head>
+	
+    <body>
+        <ons-page>
+        <ons-toolbar>
+            <div class="center">Login</div>
+            <div class="right">
+                <!--體驗button↓ 不必登入，轉換頁面以點擊ons-toolbar-button的方式-->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-chevron-right"></ons-icon>
+                </ons-toolbar-button>
+                <!--體驗button ↑-->
+            </div>
+        </ons-toolbar>
+        <div style="text-align: center; margin-top: 20px;">
+            <div class="logo">
+                <h1>DM Lab</h1>
+            </div>
+            <div class="login_content">
+                <!-- 帳號或密碼輸入錯誤的時候，顯示下列錯誤訊息↓-->
+                <p class="msg"> 帳號或密碼錯誤</p>
+                <!--錯誤訊息顯示↑-->
+                <p>
+                    <ons-input id="username" modifier="underbar" placeholder="信箱" float></ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="password" placeholder="密碼" float></ons-input>
+                </p>
+            </div>
+            <p style="margin-top: 30px;">
+				<a href='./usrquery.html'>
+					<ons-button class="self_login">登入</ons-button>
+				</a>
+            </p>
+            <!--點擊忘記密碼，轉換至填寫mail頁面，跳轉以a的方式-->
+            <a><p class="forgetpsd">忘記密碼?</p></a>
+            <div class="noaccount">
+                <!--點擊註冊，轉換至註冊頁面，跳轉以a的方式-->
+                沒有帳戶? <a id='register' href='#'><span class="regis">註冊</span></a>
+            </div>
+        </div>
+    </ons-page>
+    </body>
+</html>
+<!--DOM control js-->
+<script type="text/javascript" src="../js/login.js"></script>

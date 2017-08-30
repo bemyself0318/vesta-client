@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--base-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<link rel="stylesheet" type="text/css" href="../css/step.css?20">
+    <title>Step</title>
+</head>
+<script>
+ons.platform.select('android');
+</script>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <!--上一頁-->
+                <ons-toolbar-button onclick='history.back();'>
+                    <ons-icon icon="fa-chevron-left"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" style="text-align: center">demo recipe</div>
+            <div class="right"> </div>
+        </ons-toolbar>
+        <ons-list-item modifier="chevron" class="list-item-container">
+            <!--迴圈開始-->
+            <ons-row><span>1. </span>
+                <ons-col> 準備食材，小黃瓜洗淨切條狀，紅蘿蔔洗淨去皮切片狀，蔥切段，辣椒切片。 這次使用的是曬乾的豆皮，需要先泡過水軟化後才能使用，也可以買市場的生豆包來製作</ons-col>
+            </ons-row>
+            <!--迴圈結束-->
+            <ons-row><span>2. </span>
+                <ons-col> 準備一鍋滾水，把泡好的豆皮剪成條狀，放入滾水中燙2分鐘，完全軟化，也去除一點豆腥味，使用生豆包可以省略此步驟</ons-col>
+            </ons-row>
+            <ons-row><span>3. </span>
+                <ons-col> 另準備一個平底鍋，鍋裡放入1大匙油，加入紅蘿蔔片炒到軟化</ons-col>
+            </ons-row>
+            <ons-row><span>4. </span>
+                <ons-col> 加入小黃瓜條，豆皮，拌炒一下</ons-col>
+            </ons-row>
+            </ons-row>
+            <ons-row><span>5. </span>
+                <ons-col> 加入醬油，醬油膏，五味粉，糖，烏醋，拌炒均勻，起鍋前淋上香油就可以盛盤</ons-col>
+            </ons-row>
+        </ons-list-item>
+    </ons-page>
+</body>
+
+</html>

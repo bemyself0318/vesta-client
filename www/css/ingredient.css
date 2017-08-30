@@ -1,0 +1,129 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div {
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: 0;
+}
+
+.page__content h1,{
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page__content h1 {
+    font-family: 'Kalam';
+    font-weight: 700;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+}
+
+/* android */
+.button--material {
+    background: #A53A3B;
+    margin-bottom: 5px;
+}
+
+.button--material:active {
+    background: #A53A3B;
+}
+
+.toolbar--material {
+    background: #14325C;
+}
+
+
+.text-input--material:focus {
+    background-image: -webkit-linear-gradient(#C1403D, #C1403D), -webkit-linear-gradient(bottom, transparent 1px, #C1403D 1px);
+    width: 100%;
+}
+
+.text-input--material {
+    width: 100%;
+    background-image: -webkit-linear-gradient(rgba(193, 64, 61, 0.43), rgba(193, 64, 61, 0)), -webkit-linear-gradient(bottom, transparent 1px, rgba(193, 64, 61, 0.43) 1px);
+}
+
+.page--material__background {
+    background: #fff3cf;
+    height: 100%;
+}
+
+.list-item-container {
+  line-height: 1;
+  padding: 15px 0px 15px 15px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.name {
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.location {
+  font-size: 14px;
+  opacity: 0.4;
+  margin-bottom: 6px;
+}
+
+ons-row{
+    line-height: 2;
+    border-bottom: 1px groove;
+    margin-top:10px; 
+    text-align: center;
+}
+
+.list-item--chevron:before{
+    border-right: none;
+    border-bottom: none;
+}
+.ingredient{
+  background: #EE6C81;
+}
+.step{
+    background: #ff7e61;
+}
+
+.list-item-container{
+  padding: 0 0 0 15px;
+}
+p{
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+  padding-right: 18px;
+  text-align: right;
+}
+
+.notbuy{
+  background: coral;
+}
+.buy{
+  background: dimgray;
+  box-shadow: none;
+}
+
+.list-item{
+  padding: 0 15px;
+}

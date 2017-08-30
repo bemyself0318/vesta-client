@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--base-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<link rel="stylesheet" type="text/css" href="../css/waiting.css?20">
+	<link rel="stylesheet" type="text/css" href="../css/overviewlist.css?20">
+    <title>overviewlist</title>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <!--上一頁，回userquery頁面-->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-chevron-left"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" style="text-align: center" id='header'>請等待</div>
+            <div class="right"> </div>
+        </ons-toolbar>
+		<div id='main' style='display:none'>
+			<ons-list-item modifier="chevron" class="list-item-container" id='test'>
+				<!--js dynamic insert recipe-->
+				<div id='all'></div>
+			</ons-list-item>
+			<div style="text-align: -webkit-center; padding-bottom: 5px;">
+				當前預算：<span class="nowTotalCost">XXX</span>元
+			</div>
+			<div style="text-align: -webkit-center;">
+				<ons-button class="right" onclick="location.href = './finalRecipeList.html';">最終確認</ons-button>
+				<ons-button class="right" onclick="location.reload()">重新推薦</ons-button>
+			</div>
+		</div>
+		
+		<div id='waiting_mode' >
+			<div class="contentbg">
+			</div>
+			<div class="waitingFrame">
+				<div style="position: relative;">
+					<div class="waiting">
+						<div class="square">
+							<div class="frame"></div>
+							<div style="position: relative;"><span>ＤＭ</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+    </ons-page>
+</body>
+
+</html>
+<!--DOM control js-->
+<script type="text/javascript" src="../js/overviewlist.js"></script>
+<script>
+//get query url
+var queryUrl = location.search;
+queryUrl = queryUrl.split('?');
+var get = queryUrl[1].split('&');
+var parameter = [];
+
+for (var i = 0; i < get.length; i++) {
+	el = get[i].split('=');
+	parameter.push(el[1]);
+}
+
+var queryData = {
+	people : parameter[0],
+	course : parameter[1],
+	cost : parameter[2]
+};
+var recipeList = [];
+
+// send ajax to server
+	var ajaxUrl = 'http://vesta.csie.io/applocal/james/vesta-client/www/server/mst.php';
+	//alert('ajax is go the course : '+queryData.course);
+	$.ajax({
+		url: ajaxUrl,
+		type: "POST",
+		dataType: "JSON",
+		data: queryData,
+		success: function(rtn) {
+			//alert('ajax is back : ' + rtn[0].name);
+			for (var i = 0;i < rtn.length; i++) {
+				recipeList.push(rtn[i].name);
+				$('#all').append(
+					 '<ons-row>'+
+					 '<ons-col class="image" width="95px">'+
+						 '<img src="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201703170823" class="thumbnail">'+
+					 '</ons-col>'+
+					 '<ons-col>'+
+						 '<div class="name">'+
+							rtn[i].name +
+						 '</div>'+
+						 '<div class="location">'+
+							 '<i class="fa fa-usd"></i><span class="recipeCost">150</span>元'+
+						 '</div>'+
+						'<div class="deletmsg">'+
+							 '此筆資料已經刪除'+
+						 '</div>'+
+					 '</ons-col>'+
+					 '<ons-col style="text-align: center;">'+
+						'<ons-button class="right delet" onClick="delet()">刪除</ons-button>'+
+						'<ons-button class="right change" onClick="changeOne()">更換</ons-button>'+
+					 '</ons-col>'+
+				'</ons-row>');
+			};
+			
+			$("#all").promise().done(function() {
+									//remove waitting 
+									$('#waiting_mode').remove();
+									document.querySelector('link[href*="waiting.css"]').remove();
+									$('#main').show();
+									$('#header').html('請確認');
+									//save to session storage
+									sessionStorage.setItem('recipeList', JSON.stringify(recipeList));
+									//console.log(JSON.parse(sessionStorage.getItem('recipeList')));
+								});
+		},
+		error: function(e) {
+			alert('Error: ' + e.message);
+		}
+	});
+
+</script>

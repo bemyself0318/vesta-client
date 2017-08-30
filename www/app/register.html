@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--base-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<link rel="stylesheet" type="text/css" href="../css/register.css?18">
+    <title>Register</title>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <!--回登入頁面↓ -->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-chevron-left"></ons-icon>
+                </ons-toolbar-button>
+                <!--回登入頁面 ↑-->
+            </div>
+            <div class="center" style="text-align: center">註冊</div>
+            <div class="right">
+                <!--體驗button↓ 不必登入，可以連到userquery-->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-chevron-right"></ons-icon>
+                </ons-toolbar-button>
+                <!--體驗button ↑-->
+            </div>
+        </ons-toolbar>
+        <div style="text-align: center; margin-top: 20px;">
+            <div class="logo">
+                <h1>DM Lab</h1>
+            </div>
+            <div class="login_content">
+                <div class="mail rstFrame">
+                    <p style="display: none;">信箱已被註冊!</p>
+                    <ons-input id="username" modifier="underbar" placeholder="註冊信箱" float></ons-input>
+                    <!--↓此區為檢查信箱格式正確或錯誤的圖示msg，如果正確，$('checkMailYes').show()，如果錯誤，('checkMailError').show()-->
+                    <div class="rightFrame">
+                        <div id="checkMailYes" class="checkMailYes">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill:#009688" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="168.25" y="55.367" width="98.488" height="205.997" style="fill: rgb(255, 255, 255);" transform="matrix(0.789772, -0.613401, 0.6134, 0.789772, -111.172728, 283.191445)" /></rect>
+                                <rect x="446.983" y="164.345" width="96.485" height="342.015" style="fill: rgb(255, 253, 253);" transform="matrix(0.611312, 0.79139, -0.791389, 0.611313, 262.770098, -337.476188)" /></rect>
+                            </svg>
+                        </div>
+                        <div id="checkMailError" class="checkMailError">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill: rgb(254, 0, 0);" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="104.721" y="199.073" width="299.55" height="108.108" style="fill: rgb(255, 255, 255);" /></rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <!--↑此區為檢查信箱格式正確或錯誤的圖示msg，如果正確，$('checkMailYes').show()，如果錯誤，('checkMailError').show()-->
+                </div>
+                <div class="rstFrame">
+                    <ons-input id="nick_name" maxlength="16" modifier="underbar" placeholder="暱稱(英文或數字)" float></ons-input>
+                    <p class="checknumber"><span id="nick_nameRemind">0</span>/16</p>
+                    <!--↓此區為檢查暱稱格式正確或錯誤的圖示msg，如果正確，$('checkNickYes').show()，如果錯誤，('checkNickError').show()-->
+                    <div class="rightFrame">
+                        <div id="checkNickYes" class="checkNickYes">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill:#009688" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="168.25" y="55.367" width="98.488" height="205.997" style="fill: rgb(255, 255, 255);" transform="matrix(0.789772, -0.613401, 0.6134, 0.789772, -111.172728, 283.191445)" /></rect>
+                                <rect x="446.983" y="164.345" width="96.485" height="342.015" style="fill: rgb(255, 253, 253);" transform="matrix(0.611312, 0.79139, -0.791389, 0.611313, 262.770098, -337.476188)" /></rect>
+                            </svg>
+                        </div>
+                        <div id="checkNickError" class="checkNickError">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill: rgb(254, 0, 0);" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="104.721" y="199.073" width="299.55" height="108.108" style="fill: rgb(255, 255, 255);" /></rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <!--↑此區為檢查暱稱格式正確或錯誤的圖示msg，如果正確，$('checkMailYes').show()，如果錯誤，('checkNickError').show()-->
+                </div>
+                <div class="rstFrame">
+                    <ons-input id="password" maxlength="32" modifier="underbar" type="password" placeholder="密碼" float></ons-input>
+                    <p class="checknumber"><span id="passwordRemind">0</span>/32</p>
+                    <!--↓此區為檢查密碼正確或錯誤的圖示msg，如果正確，$('checkPsdYes').show()，如果錯誤，('checkPsdError').show()-->
+                    <div class="rightFrame">
+                        <div id="checkPsdYes" class="checkPsdYes">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill:#009688" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="168.25" y="55.367" width="98.488" height="205.997" style="fill: rgb(255, 255, 255);" transform="matrix(0.789772, -0.613401, 0.6134, 0.789772, -111.172728, 283.191445)" /></rect>
+                                <rect x="446.983" y="164.345" width="96.485" height="342.015" style="fill: rgb(255, 253, 253);" transform="matrix(0.611312, 0.79139, -0.791389, 0.611313, 262.770098, -337.476188)" /></rect>
+                            </svg>
+                        </div>
+                        <div id="checkPsdError" class="checkPsdError">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill: rgb(254, 0, 0);" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="104.721" y="199.073" width="299.55" height="108.108" style="fill: rgb(255, 255, 255);" /></rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <!--↑此區為檢查密碼正確或錯誤的圖示msg，如果正確，$('checkPsdYes').show()，如果錯誤，('checkPsdError').show()-->
+                </div>
+                <div class="rstFrame">
+                    <ons-input id="password_2" maxlength="32" modifier="underbar" type="password" placeholder="確認密碼" float></ons-input>
+                    <p class="checknumber"><span id="password2Remind">0</span>/32</p>
+                    <!--↓此區為檢查確認密碼正確或錯誤的圖示msg，如果正確，$('checkPsdYes').show()，如果錯誤，('checkPsdError').show()-->
+                    <div class="rightFrame">
+                        <div id="checkPsd2Yes" class="checkPsd2Yes">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill:#009688" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="168.25" y="55.367" width="98.488" height="205.997" style="fill: rgb(255, 255, 255);" transform="matrix(0.789772, -0.613401, 0.6134, 0.789772, -111.172728, 283.191445)" /></rect>
+                                <rect x="446.983" y="164.345" width="96.485" height="342.015" style="fill: rgb(255, 253, 253);" transform="matrix(0.611312, 0.79139, -0.791389, 0.611313, 262.770098, -337.476188)" /></rect>
+                            </svg>
+                        </div>
+                        <div id="checkPsd2Error" class="checkPsd2Error">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse style="fill: rgb(254, 0, 0);" transform="matrix(-0.646137, 0.763222, -0.763222, -0.646137, 434.801668, 293.761009)" cx="85.644" cy="168.891" rx="249.995" ry="246.496" /></ellipse>
+                                <rect x="104.721" y="199.073" width="299.55" height="108.108" style="fill: rgb(255, 255, 255);" /></rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <!--↑此區為檢查確認密碼正確或錯誤的圖示msg，如果正確，$('checkPsdYes').show()，如果錯誤，('checkPsdError').show()-->
+                </div>
+            </div>
+            <p style="margin-top: 30px;">
+                <ons-button class="self_login">註冊</ons-button>
+            </p>
+            <p style="display: none;">請確實填完所有欄位！</p>
+        </div>
+    </ons-page>
+</body>
+</html>
+<!--DOM control js-->
+<script src='../js/register.js'></script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--base-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	<script src='../js/base.js'></script>
+	<!--custom-->
+	<link rel="stylesheet" type="text/css" href="../css/buyList.css?20">
+    <title>buyList</title>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <!--選單-->
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-bars"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" style="text-align: center">採買清單</div>
+            <div class="right"> </div>
+        </ons-toolbar>
+        <p>
+            <ons-button onclick="history.back();">推薦清單</ons-button>
+        </p>
+        <ons-list-item modifier="chevron" class="list-item-container">
+            <!--迴圈開始-->
+            <ons-row>
+                <ons-col>demo1</ons-col>
+                <ons-col>2支</ons-col>
+                <ons-col>
+                    <ons-button class="notbuy buystatus">未採買</ons-button>
+                </ons-col>
+            </ons-row>
+            <!--迴圈結束-->
+            <ons-row>
+                <ons-col>demo2</ons-col>
+                <ons-col>1根</ons-col>
+                <ons-col>
+                    <ons-button class="notbuy buystatus">未採買</ons-button>
+                </ons-col>
+            </ons-row>
+            <ons-row>
+                <ons-col>demo3</ons-col>
+                <ons-col>2斤</ons-col>
+                <ons-col>
+                    <ons-button class="notbuy buystatus">未採買</ons-button>
+                </ons-col>
+            </ons-row>
+			<ons-row>
+                <ons-col>demo4</ons-col>
+                <ons-col>200克</ons-col>
+                <ons-col>
+                    <ons-button class="notbuy buystatus">未採買</ons-button>
+                </ons-col>
+            </ons-row>
+			<ons-row>
+                <ons-col>demo5</ons-col>
+                <ons-col>2片</ons-col>
+                <ons-col>
+                    <ons-button class="notbuy buystatus">未採買</ons-button>
+                </ons-col>
+            </ons-row>
+            <!--迴圈結束-->
+        </ons-list-item>
+    </ons-page>
+</body>
+
+</html>
+<script>
+$(".buystatus").click(function() {
+    if ($(this).hasClass('notbuy')) {
+        $(this).removeClass('notbuy');
+        $(this).addClass('buy');
+        $(this).html("已採買");
+    } else {
+        $(this).removeClass('buy');
+        $(this).addClass('notbuy');
+        $(this).html("未採買");
+    }
+})
+</script>
