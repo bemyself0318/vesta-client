@@ -13,6 +13,7 @@ Student: James Li, Amber U, Way Huang. contact us : jamesli@csie.io
 # build app
 PREWORK: please make sure you have already prepare the environment for cordova: https://cordova.apache.org/
 1. add path by run the 3 command below:
+
     export ANDROID_HOME=$HOME/../../android-sdk-linux 
     
     export PATH=$ANDROID_HOME\tools:$PATH 
