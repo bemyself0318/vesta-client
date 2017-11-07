@@ -34,26 +34,28 @@ ons.platform.select('android');
             <div class="right"> </div>
         </ons-toolbar>
         <ons-list-item modifier="chevron" class="list-item-container">
-            <!--迴圈開始-->
-            <ons-row><span>1. </span>
-                <ons-col> 準備食材，小黃瓜洗淨切條狀，紅蘿蔔洗淨去皮切片狀，蔥切段，辣椒切片。 這次使用的是曬乾的豆皮，需要先泡過水軟化後才能使用，也可以買市場的生豆包來製作</ons-col>
-            </ons-row>
-            <!--迴圈結束-->
-            <ons-row><span>2. </span>
-                <ons-col> 準備一鍋滾水，把泡好的豆皮剪成條狀，放入滾水中燙2分鐘，完全軟化，也去除一點豆腥味，使用生豆包可以省略此步驟</ons-col>
-            </ons-row>
-            <ons-row><span>3. </span>
-                <ons-col> 另準備一個平底鍋，鍋裡放入1大匙油，加入紅蘿蔔片炒到軟化</ons-col>
-            </ons-row>
-            <ons-row><span>4. </span>
-                <ons-col> 加入小黃瓜條，豆皮，拌炒一下</ons-col>
-            </ons-row>
-            </ons-row>
-            <ons-row><span>5. </span>
-                <ons-col> 加入醬油，醬油膏，五味粉，糖，烏醋，拌炒均勻，起鍋前淋上香油就可以盛盤</ons-col>
-            </ons-row>
+            <!-- <ons-row><span>1. </span> -->
+                <!-- <ons-col> 準備食材，小黃瓜洗淨切條狀，紅蘿蔔洗淨去皮切片狀，蔥切段，辣椒切片。 這次使用的是曬乾的豆皮，需要先泡過水軟化後才能使用，也可以買市場的生豆包來製作</ons-col> -->
+            <!-- </ons-row> -->
+			<div id='step'></div>
         </ons-list-item>
     </ons-page>
 </body>
 
 </html>
+<script>
+var queryUrl = location.search;
+	queryUrl = queryUrl.split('?');
+	var param = queryUrl[1].split('&');
+	index = param[0].split('=')[1];
+	
+	var finalData = JSON.parse(sessionStorage.getItem('finalData'));
+	var current_recipe = finalData[index];
+	
+	var step = current_recipe['step']
+	
+	//filte
+	step = step.replace(/\n/g,"</br></br>");
+
+	$('#step').html(step);
+</script>

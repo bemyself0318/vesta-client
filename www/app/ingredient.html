@@ -34,30 +34,28 @@ ons.platform.select('android');
             <div class="right"> </div>
         </ons-toolbar>
         <ons-list-item modifier="chevron" class="list-item-container">
-            <!--迴圈開始-->
-            <ons-row>
-                <ons-col>demo1</ons-col>
-                <ons-col>2支</ons-col>
-            </ons-row>
-            <!--迴圈結束-->
-            <ons-row>
-                <ons-col>demo2</ons-col>
-                <ons-col>1根</ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col>demo3</ons-col>
-                <ons-col>200克</ons-col>
-            </ons-row>
-			<ons-row>
-                <ons-col>demo4</ons-col>
-                <ons-col>1斤</ons-col>
-            </ons-row>
-			<ons-row>
-                <ons-col>demo5</ons-col>
-                <ons-col>3片</ons-col>
-            </ons-row>
+			<div id='ingredient'></div>      
         </ons-list-item>
     </ons-page>
 </body>
 
 </html>
+<script>	
+	var queryUrl = location.search;
+	queryUrl = queryUrl.split('?');
+	var param = queryUrl[1].split('&');
+	index = param[0].split('=')[1];
+	
+	var finalData = JSON.parse(sessionStorage.getItem('finalData'));
+	var current_recipe = finalData[index];
+	
+	var total_ingredient = current_recipe['total_ingredient']
+	
+	//filte
+	total_ingredient = total_ingredient.replace(/=/g,"");
+	total_ingredient = total_ingredient.replace(/\n/g,"</br>");
+	total_ingredient = total_ingredient.replace(/\t/g,"　");
+
+	$('#ingredient').html(total_ingredient);
+
+</script>
