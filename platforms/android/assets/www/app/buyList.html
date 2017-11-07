@@ -34,59 +34,53 @@
             <ons-button onclick="history.back();">推薦清單</ons-button>
         </p>
         <ons-list-item modifier="chevron" class="list-item-container">
-            <!--迴圈開始-->
-            <ons-row>
-                <ons-col>demo1</ons-col>
-                <ons-col>2支</ons-col>
-                <ons-col>
-                    <ons-button class="notbuy buystatus">未採買</ons-button>
-                </ons-col>
-            </ons-row>
-            <!--迴圈結束-->
-            <ons-row>
-                <ons-col>demo2</ons-col>
-                <ons-col>1根</ons-col>
-                <ons-col>
-                    <ons-button class="notbuy buystatus">未採買</ons-button>
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col>demo3</ons-col>
-                <ons-col>2斤</ons-col>
-                <ons-col>
-                    <ons-button class="notbuy buystatus">未採買</ons-button>
-                </ons-col>
-            </ons-row>
-			<ons-row>
-                <ons-col>demo4</ons-col>
-                <ons-col>200克</ons-col>
-                <ons-col>
-                    <ons-button class="notbuy buystatus">未採買</ons-button>
-                </ons-col>
-            </ons-row>
-			<ons-row>
-                <ons-col>demo5</ons-col>
-                <ons-col>2片</ons-col>
-                <ons-col>
-                    <ons-button class="notbuy buystatus">未採買</ons-button>
-                </ons-col>
-            </ons-row>
-            <!--迴圈結束-->
+			<div id='buy_list'></div>
         </ons-list-item>
     </ons-page>
 </body>
 
 </html>
 <script>
-$(".buystatus").click(function() {
-    if ($(this).hasClass('notbuy')) {
-        $(this).removeClass('notbuy');
-        $(this).addClass('buy');
-        $(this).html("已採買");
-    } else {
-        $(this).removeClass('buy');
-        $(this).addClass('notbuy');
-        $(this).html("未採買");
-    }
-})
+	var finalData = JSON.parse(sessionStorage.getItem('finalData'));
+	var buy_list = {};
+	for (var i = 0; i < finalData.length; i++) {
+		var tmp = finalData[i]['sys_ingredient'];
+		var pair = tmp.split(';')
+		for(var j = 0; j < pair.length; j++) {
+			if(pair[j] != ''){
+				var t = pair[j].split(',');
+				if(buy_list[t[0]]) {
+					buy_list[t[0]] += ' + '+t[1]
+				}
+				else {
+					buy_list[t[0]] = t[1];
+				}
+			}
+		}
+		
+	}
+	
+	for(var key in buy_list){
+		$('#buy_list').append(
+			"<ons-row>" +
+                "<ons-col>"+key+"</ons-col>" +
+                "<ons-col>"+buy_list[key]+"</ons-col>" +
+                "<ons-col>" +
+                    "<ons-button class='notbuy buystatus'>未採買</ons-button>" +
+                "</ons-col>" +
+            "</ons-row>"
+		);
+	}
+
+	$(".buystatus").click(function() {
+		if ($(this).hasClass('notbuy')) {
+			$(this).removeClass('notbuy');
+			$(this).addClass('buy');
+			$(this).html("已採買");
+		} else {
+			$(this).removeClass('buy');
+			$(this).addClass('notbuy');
+			$(this).html("未採買");
+		}
+	})
 </script>

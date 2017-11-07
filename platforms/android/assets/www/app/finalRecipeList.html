@@ -15,6 +15,7 @@
 	<script src='../js/base.js'></script>
 	<!--custom-->
 	<link rel="stylesheet" type="text/css" href="../css/finalRecipeList.css?20">
+	<link rel="stylesheet" type="text/css" href="../css/star_rank.css?20">
     <title>finalRecipeList</title>
 </head>
 
@@ -27,14 +28,40 @@
                     <ons-icon icon="fa-bars"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" style="text-align: center">推薦清單</div>
+            <div class="center" style="padding-left:20%;color:white;">推薦清單</div>
             <div class="right"> </div>
         </ons-toolbar>
-        <p><ons-button onClick="location.href='./buyList.html';">採買清單</ons-button></p>
+        <ons-button onClick="location.href='./buyList.html';">採買清單</ons-button>
+		<ons-button onClick="location.href='./usrquery.html';">回到首頁</ons-button>
         <ons-list-item modifier="chevron" class="list-item-container">
 			<!-- JS dynamic insert DOM in here -->
 			<div id='recipeList'></div>
         </ons-list-item>
+		<form>
+	  <div id="ranks" style='padding-left:30%'>
+		<label for="1" data-rate="Poor">
+		  <input type="checkbox" id="1" />
+		  <i class="fa fa-star"></i>
+		</label>
+		<label for="2" data-rate="Fair">
+		  <input type="checkbox" id="2" />
+		  <i class="fa fa-star"></i>
+		</label>
+		<label for="3" data-rate="Good">
+		  <input type="checkbox" id="3" />
+		  <i class="fa fa-star"></i>
+		</label>
+		<label for="4" data-rate="Great">
+		  <input type="checkbox" id="4" />
+		  <i class="fa fa-star"></i>
+		</label>
+		<label for="5" data-rate="WOW">
+		  <input type="checkbox" id="5" />
+		  <i class="fa fa-star"></i>
+		</label>
+		<span class="rateTitle"></span>
+	  </div>
+	</form>
     </ons-page>
 </body>
 
@@ -43,25 +70,89 @@
 <script type="text/javascript" src="../js/finalrecipelist.js"></script>
 <script>
 var recipeList = JSON.parse(sessionStorage.getItem('recipeList'));
-for (var i = 0; i < recipeList.length; i++) {
-	$('#recipeList').append(
-		'<ons-row>'+
-			'<ons-col class="image" width="95px">'+
-				'<img src="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201703170823" class="thumbnail">'+
-			'</ons-col>'+
-			'<ons-col>'+
-				'<div class="name">'+
-					recipeList[i] +
-				'</div>'+
-				'<div class="location">'+
-					'<i class="fa fa-usd"></i><span class="recipeCost">150</span>元'+
-				'</div>'+
-			'</ons-col>'+
-			'<ons-col style="text-align: center;">'+
-				'<ons-button class="right ingredient" onClick="showIng();">食材</ons-button>'+
-				'<ons-button class="right step" onClick="showStep();">作法</ons-button>'+
-			'</ons-col>'+
-		'</ons-row>'
-	);
+var url = 'http://vesta.csie.io:8080/applocal/james/vesta-server/index.php/Recipe/finalList';
+var recipe;
+var post_data = {'rids':recipeList};
+$.post(url, post_data, function(rtn) {
+	recipe = rtn;
+	for (var i = 0; i < recipe.length; i++) {
+		$('#recipeList').append(
+			'<ons-row>'+
+				'<ons-col class="image" width="95px">'+
+					'<img class="thumbnail" width="70%" height="70%" src="http://vesta.csie.io:8080/applocal/james/vesta-server/picture/'+recipe[i].id+'.jpg">'+
+				'</ons-col> '+
+				'<ons-col>'+
+					'<div class="name">'+
+						recipe[i].name +
+					'</div>'+
+					'<div class="location">'+
+						'<i class="fa fa-usd"></i><span class="recipeCost">'+recipe[i].price+'</span>元'+
+					'</div>'+
+				'</ons-col>'+
+				'<ons-col style="text-align:left bottom;">'+
+					'<ons-button class="right ingredient" onClick="showIng('+i+');">食材</ons-button>'+
+					'<ons-button class="right step" onClick="showStep('+i+');">作法</ons-button>'+
+				'</ons-col>'+
+			'</ons-row>'
+		);
+	}
+	$("#recipeList").promise().done(function() {
+									
+		//save to session storage
+		sessionStorage.setItem('finalData', JSON.stringify(recipe));
+		//console.log(JSON.parse(sessionStorage.getItem('recipeList')));
+	});
+});
+
+
+// rank star
+var labels = $("#ranks label");
+var labelsTitle = $("#ranks .rateTitle");
+
+labels.hover(function(){
+  $(this).css("color", "gold")
+    .prevUntil().css("color", "gold");
+    labelsTitle.html($(this).attr('data-rate'));
+  
+}, function(){
+    $(this).css("color", "inherit").prevUntil().css("color", "inherit");
+    var checkedNum = $("#ranks label.checked").length;
+    if (checkedNum === 1){
+      labelsTitle.html( $("#ranks label.checked").attr("data-rate") );
+    }else{
+      labelsTitle.html("");
+    }
+    
+});
+
+var star_score = -1;
+
+labels.click(function(){
+  var labelSelected = $(this);
+  var star_score = $(this).attr('for');
+  
+  // reset label class and input checkbox
+  labels.removeClass("rankChecked checked")
+    .find("input[type=checkbox]")
+    .removeAttr("checked");
+  
+  // add checked when label clicked
+  labelSelected.find("input[type=checkbox]").attr("checked","checked")
+    .parent().addClass("checked");
+  
+  // add rankChecked Class
+  labelSelected.addClass("rankChecked")
+    .removeAttr("style")
+    .prevUntil()
+    .removeAttr("style").addClass("rankChecked")
+	sendStar(star_score);
+});
+
+function sendStar(stars) {
+	var score_url = 'http://vesta.csie.io:8080/applocal/james/vesta-server/index.php/Recipe/score';
+	var score_data = {'stars':stars, 'rids':recipeList, 'uid':0};
+	$.post(score_url, score_data, function(rtn) {
+		console.log('done');
+	});
 }
 </script>

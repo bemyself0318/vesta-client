@@ -197,7 +197,7 @@ $('#totalCheckCtl').click(function(){
 		totalCost = totalCost.replace('元', '');
 		// prepare url
 		var targetUrl = '../app/overviewlist.html';
-		targetUrl += '?peolpe=' + totalPeople + '&course=' + totalCourse +　'&cost=' + totalCost;
+		targetUrl += '?peolpe=' + totalPeople + '&dishes=' + totalCourse +　'&budget=' + totalCost;
 		console.log(targetUrl);
 		//send
 		window.location.href = targetUrl;

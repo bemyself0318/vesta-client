@@ -1,7 +1,6 @@
-function showIng() {
-	location.href = '../app/ingredient.html';
+function showIng(index) {
+	location.href = '../app/ingredient.html?index='+String(index);
 }
-
-function showStep() {
-	location.href = '../app/step.html';
+function showStep(index) {
+	location.href = '../app/step.html?index='+String(index);
 }

@@ -24,7 +24,7 @@
         <ons-toolbar>
             <div class="left">
                 <!--上一頁，回userquery頁面-->
-                <ons-toolbar-button>
+                <ons-toolbar-button onclick='window.history.back();'>
                     <ons-icon icon="fa-chevron-left"></ons-icon>
                 </ons-toolbar-button>
             </div>
@@ -37,10 +37,10 @@
 				<div id='all'></div>
 			</ons-list-item>
 			<div style="text-align: -webkit-center; padding-bottom: 5px;">
-				當前預算：<span class="nowTotalCost">XXX</span>元
+				當前預算：<span class="nowTotalCost"></span>元
 			</div>
 			<div style="text-align: -webkit-center;">
-				<ons-button class="right" onclick="location.href = './finalRecipeList.html';">最終確認</ons-button>
+				<ons-button class="right" onclick="finalCheck();">最終確認</ons-button>
 				<ons-button class="right" onclick="location.reload()">重新推薦</ons-button>
 			</div>
 		</div>
@@ -80,13 +80,13 @@ for (var i = 0; i < get.length; i++) {
 
 var queryData = {
 	people : parameter[0],
-	course : parameter[1],
-	cost : parameter[2]
+	dishes : parameter[1],
+	budget : parameter[2]
 };
 var recipeList = [];
 
 // send ajax to server
-	var ajaxUrl = 'http://vesta.csie.io/applocal/james/vesta-client/www/server/mst.php';
+	var ajaxUrl = 'http://vesta.csie.io:8080/applocal/james/vesta-server/index.php/Recipe/recommend';
 	//alert('ajax is go the course : '+queryData.course);
 	$.ajax({
 		url: ajaxUrl,
@@ -95,27 +95,29 @@ var recipeList = [];
 		data: queryData,
 		success: function(rtn) {
 			//alert('ajax is back : ' + rtn[0].name);
-			for (var i = 0;i < rtn.length; i++) {
-				recipeList.push(rtn[i].name);
+			var recipe = rtn['recipe'];
+			$('.nowTotalCost').text(rtn['cost']);
+			for (var i = 0;i < recipe.length; i++) {
+				recipeList.push(recipe[i].id);
 				$('#all').append(
-					 '<ons-row>'+
+					 "<ons-row id='"+recipe[i].id+"'>"+
 					 '<ons-col class="image" width="95px">'+
-						 '<img src="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201703170823" class="thumbnail">'+
+						'<img width="70%" height="70%" src="http://vesta.csie.io:8080/applocal/james/vesta-server/picture/'+recipe[i].id+'.jpg">'+
 					 '</ons-col>'+
 					 '<ons-col>'+
 						 '<div class="name">'+
-							rtn[i].name +
+							recipe[i].name +
 						 '</div>'+
 						 '<div class="location">'+
-							 '<i class="fa fa-usd"></i><span class="recipeCost">150</span>元'+
+							 '<i class="fa fa-usd"></i><span class="recipeCost">'+recipe[i].price+'</span>元'+
 						 '</div>'+
 						'<div class="deletmsg">'+
 							 '此筆資料已經刪除'+
 						 '</div>'+
 					 '</ons-col>'+
 					 '<ons-col style="text-align: center;">'+
-						'<ons-button class="right delet" onClick="delet()">刪除</ons-button>'+
-						'<ons-button class="right change" onClick="changeOne()">更換</ons-button>'+
+						"<ons-button class='right delet' onClick='delet("+recipe[i].id+")'>刪除</ons-button>"+
+						"<ons-button class='right change' onClick='changeOne("+recipe[i].id+")'>更換</ons-button>"+
 					 '</ons-col>'+
 				'</ons-row>');
 			};
@@ -129,7 +131,7 @@ var recipeList = [];
 									//save to session storage
 									sessionStorage.setItem('recipeList', JSON.stringify(recipeList));
 									//console.log(JSON.parse(sessionStorage.getItem('recipeList')));
-								});
+			});
 		},
 		error: function(e) {
 			alert('Error: ' + e.message);
