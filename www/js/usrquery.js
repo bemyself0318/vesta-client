@@ -178,6 +178,18 @@ $('#totalCheckCtl').click(function(){
 	var totalPeople = $('#totalPeople').text();
 	var totalCourse = $('#totalCourse').text();
 	var totalCost = $('#totalCost').text();
+	
+	var main_soup = 0; // 0:none, 1:only main, 2:only soup, 3:both
+	if ($('#need_main').prop('checked') == true && $('#need_soup').prop('checked') == true) {
+		main_soup = 3;
+	}
+	else if ($('#need_main').prop('checked') == true) {
+		main_soup = 1;
+	}
+	else {
+		main_soup = 2;
+	}
+	
     if (totalPeople === "總人數"){
           $("#checkmsg").show();
           $("#checkmsg").html("請選擇總人數");  
@@ -197,7 +209,7 @@ $('#totalCheckCtl').click(function(){
 		totalCost = totalCost.replace('元', '');
 		// prepare url
 		var targetUrl = '../app/overviewlist.html';
-		targetUrl += '?peolpe=' + totalPeople + '&dishes=' + totalCourse +　'&budget=' + totalCost;
+		targetUrl += '?peolpe=' + totalPeople + '&dishes=' + totalCourse +　'&budget=' + totalCost + '&main_soup=' + main_soup;
 		console.log(targetUrl);
 		//send
 		window.location.href = targetUrl;

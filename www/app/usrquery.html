@@ -27,7 +27,7 @@
                 <!-- </ons-toolbar-button> -->
                 <!-- 回登入頁面 ↑ -->
             </div>
-            <div class="center" style="text-align: center">請選擇</div>
+            <div class="center" style="text-align: center;color:white;">請選擇</div>
             <div class="right"> </div>
         </ons-toolbar>
 		
@@ -35,8 +35,12 @@
             <ons-button id="totalPeopleCtl" class="peoplebtn"><span id="totalPeople">總人數</span><i class="fa fa-user-plus people" aria-hidden="true"></i></ons-button>
             <ons-button id="totalCourseCtl" class="coursebtn"><span id="totalCourse">總菜數</span><i class="fa fa-cutlery course" aria-hidden="true"></i></ons-button>
             <ons-button id="totalCostCtl" class="moneybtn"><span id="totalCost">總預算</span><i class="fa fa-money money" aria-hidden="true"></i></ons-button>
+			<div style='text-align:left;padding-left:5%;padding-top:10%'>
+			<input type="checkbox" name="need_main" value="true" id='need_main'>需要主食(飯和麵)<br>
+			<input type="checkbox" name="need_soup" value="true" id='need_soup'>需要湯品<br>
+			<div>
 			<ons-button id="totalCheckCtl" class="check">確認送出</ons-button>
-            <p id="checkmsg" class="costmsg">訊息</p>
+			<p id="checkmsg" class="costmsg">訊息</p>
         </div>
         <div class="peopleSele">
             <div class="frame">

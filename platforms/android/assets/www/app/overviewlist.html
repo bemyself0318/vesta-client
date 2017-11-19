@@ -28,7 +28,7 @@
                     <ons-icon icon="fa-chevron-left"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" style="text-align: center" id='header'>請等待</div>
+            <div class="center" style="text-align: center;color:white;" id='header'>請等待</div>
             <div class="right"> </div>
         </ons-toolbar>
 		<div id='main' style='display:none'>
@@ -81,8 +81,10 @@ for (var i = 0; i < get.length; i++) {
 var queryData = {
 	people : parameter[0],
 	dishes : parameter[1],
-	budget : parameter[2]
+	budget : parameter[2],
+	main_soup : parameter[3]
 };
+
 var recipeList = [];
 
 // send ajax to server
