@@ -78,6 +78,7 @@ function delet(id) {
 	}
 }
 
+
 function finalCheck() {
 	sessionStorage.setItem('recipeList', JSON.stringify(recipeList));
 	location.href = './finalRecipeList.html';
